@@ -2,7 +2,7 @@
 # Contributor: Ilya Gulya <ilyagulya@gmail.com>
 pkgname="deezer"
 pkgver=4.20.30
-pkgrel=1
+pkgrel=2
 pkgdesc="A proprietary music streaming service"
 arch=('any')
 url="https://www.deezer.com/"
@@ -15,12 +15,14 @@ source=("$pkgname-$pkgver-setup.exe::https://www.deezer.com/desktop/download/art
     deezer
     menu-bar.patch
     quit.patch
+	power.patch
     0001-MPRIS-interface.patch)
 sha256sums=('70b4e1e1fe61de88cd73aee3eab8186b7d5fef7b78843be7c388591e254a221f'
             'f8a5279239b56082a5c85487b0c261fb332623f27dac3ec8093458b8c55d8d99'
-            '441ab8532eac991eb5315a8ab39242aae1aa6fd633e8af4b0ab2a247fe1239cc'
+            '5dbcd1067af39dd8c2474ebfa0436e6e53635a939ea24570554a951d67763314'
             '8a22f666e308663cb6addabe7695b1e5e3bfa07f68cc7b479e51426dee1c36b0'
             '75c7edd8714393579e29842a8e15aabccfd0a9b5130ff7501890e7c1c1931b46'
+            'efe1d2dbbe719a57f3fc953997508cc19d2b9e94881d1e1e3eba7921893fbcf8'
             '217d899797908004453e9c0d86057b5682b3612c6412b4f6c107ac4ad201320b')
 
 prepare() {
@@ -61,6 +63,8 @@ prepare() {
     patch -p1 <"$srcdir/menu-bar.patch"
     # Hide to tray (https://github.com/SibrenVasse/deezer/issues/4)
     patch -p1 <"$srcdir/quit.patch"
+
+	patch -p1 <"$srcdir/power.patch"
 
     # Monkeypatch MPRIS D-Bus interface
     patch -p1 <"$srcdir/0001-MPRIS-interface.patch"

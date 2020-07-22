@@ -1,0 +1,17 @@
+diff --git a/build/main.js b/build/main.js
+index b7f762a..fae70de 100644
+--- a/build/main.js
++++ b/build/main.js
+@@ -3318,6 +3318,12 @@ module.exports = (function (modules) {
+     ));
+     let PowerSaveService_PowerSaveService = class {
+       start() {
++        if ("yes" === process.env.DZ_DISABLE_POWERSAVE) {
++          return void external_electron_log_default.a.info(
++            "PowerSave: Not starting, disabled by envirnment variable"
++          );
++          return;
++        }
+         if (this.isStarted())
+           return void external_electron_log_default.a.info(
+             "PowerSave: Trying to start the power block saver but it is already started"
