@@ -2,7 +2,7 @@
 # Contributor: Ilya Gulya <ilyagulya@gmail.com>
 pkgname="deezer"
 pkgver=4.20.30
-pkgrel=2
+pkgrel=3
 pkgdesc="A proprietary music streaming service"
 arch=('any')
 url="https://www.deezer.com/"
@@ -67,7 +67,7 @@ prepare() {
 	patch -p1 <"$srcdir/power.patch"
 
     # Monkeypatch MPRIS D-Bus interface
-    patch -p1 <"$srcdir/0001-MPRIS-interface.patch"
+    # patch -p1 <"$srcdir/0001-MPRIS-interface.patch"
 
     cd "$srcdir/resources/"
     asar pack app app.asar
